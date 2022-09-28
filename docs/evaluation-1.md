@@ -11,7 +11,7 @@
 1. Configure Router interfaces.
 
     ```sh
-        make configure
+    make configure
     ```
 
 1. Set IPs on clients:
@@ -19,32 +19,32 @@
     Client 1-1:
 
     ```sh
-        make shell-client-lab-1-1
+    make shell-client-lab-1-1
 
-        ip address add 192.168.0.100/24 dev eth1
-        ip route del default
-        ip route add default via 192.168.0.1 dev eth1
-        exit
+    ip address add 192.168.0.100/24 dev eth1
+    ip route del default
+    ip route add default via 192.168.0.1 dev eth1
+    exit
     ```
 
 
     Client 2-1:
 
     ```sh
-        make shell-client-lab-2-1
+    make shell-client-lab-2-1
 
-        ip address add 192.168.100.100/24 dev eth1
-        ip route del default
-        ip route add default via 192.168.100.1 dev eth1
-        exit
+    ip address add 192.168.100.100/24 dev eth1
+    ip route del default
+    ip route add default via 192.168.100.1 dev eth1
+    exit
     ```
 
 1. Add the nodes via `gosdnc`.
    The needed password can be found in the logs of the controller.
 
     ```sh
-        ./scripts/add-device-0.sh <password-from-logs>
-        ./scripts/add-device-1.sh <password-from-logs>
+    ./scripts/add-device-0.sh <password-from-logs>
+    ./scripts/add-device-1.sh <password-from-logs>
     ```
 
 1. Start the routing engine with `make start-routing-engine`
@@ -57,40 +57,40 @@
    The needed password can be found in the logs of the controller.
 
     ```sh
-        ./scripts/list-devices.sh <password-from-logs>
+    ./scripts/list-devices.sh <password-from-logs>
     ```
 
     ```sh
-        {
-            "timestamp": "1649929667405420000",
-            "link": {
-                "name": "test",
-                "sourceNode": {
-                    "id": "REPLACE",
-                    "name": "router-0"
-                },
-                "targetNode": {
-                    "id": "REPLACE",
-                    "name": "router-1"
-                },
-                "sourcePort": {
-                    "id": "1fa479e7-d393-4d45-822d-485cc1f05fce",
-                    "name": "Ethernet1",
-                    "configuration": {
-                        "ip": "10.13.37.1",
-                        "prefixLength": "30"
-                    }
-                },
-                "targetPort": {
-                    "id": "1fa479e7-d393-4d45-822d-485cc1f05fc2",
-                    "name": "Ethernet1",
-                    "configuration": {
-                        "ip": "10.13.37.2",
-                        "prefixLength": "30"
-                    }
+    {
+        "timestamp": "1649929667405420000",
+        "link": {
+            "name": "test",
+            "sourceNode": {
+                "id": "REPLACE",
+                "name": "router-0"
+            },
+            "targetNode": {
+                "id": "REPLACE",
+                "name": "router-1"
+            },
+            "sourcePort": {
+                "id": "1fa479e7-d393-4d45-822d-485cc1f05fce",
+                "name": "Ethernet1",
+                "configuration": {
+                    "ip": "10.13.37.1",
+                    "prefixLength": "30"
+                }
+            },
+            "targetPort": {
+                "id": "1fa479e7-d393-4d45-822d-485cc1f05fc2",
+                "name": "Ethernet1",
+                "configuration": {
+                    "ip": "10.13.37.2",
+                    "prefixLength": "30"
                 }
             }
         }
+    }
     ```
 
     Then execute the `Routing-Engine-Evaluation` POST request.

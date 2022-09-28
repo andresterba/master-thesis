@@ -12,7 +12,7 @@
    The needed password can be found in the logs of the controller.
 
     ```sh
-        ./scripts/add-device-0.sh <password-from-logs>
+    ./scripts/add-device-0.sh <password-from-logs>
     ```
 
 1. Check the hostname of the router after it is started with `make check-hostname-router-0`
