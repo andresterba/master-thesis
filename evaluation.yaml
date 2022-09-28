@@ -1,0 +1,108 @@
+name: thesis_evaluation
+
+mgmt:
+  network: thesis-evaluation-net
+  ipv4_subnet: 172.100.0.0/16
+  ipv6_subnet: 2001:db8::/64
+
+topology:
+  kinds:
+    ceos:
+      image: registry.code.fbi.h-da.de/danet/containers/ceos:4.28.0F
+  nodes:
+    ceos0:
+      kind: ceos
+      mgmt_ipv4: 172.100.0.2
+      group: lab-1
+    ceos1:
+      kind: ceos
+      mgmt_ipv4: 172.100.0.3
+      group: lab-2
+
+    client-lab-1-1:
+      kind: linux
+      image: thesis-evaluation-clients
+      mgmt_ipv4: 172.100.0.4
+      group: lab-1
+
+    client-lab-1-2:
+      kind: linux
+      image: thesis-evaluation-clients
+      mgmt_ipv4: 172.100.0.5
+      group: lab-1
+
+    client-lab-2-1:
+      kind: linux
+      image: thesis-evaluation-clients
+      mgmt_ipv4: 172.100.0.6
+      group: lab-2
+
+    client-lab-2-2:
+      kind: linux
+      image: thesis-evaluation-clients
+      mgmt_ipv4: 172.100.0.7
+      group: lab-2
+
+    # gosdn:
+    #   kind: linux
+    #   image: registry.code.fbi.h-da.de/danet/gosdn:develop
+    #   mgmt_ipv4: 172.100.0.8
+    #   group: core
+    #   ports:
+    #     - 127.0.0.1:55055:55055
+    #     - 127.0.0.1:8080:8080
+    #     - 127.0.0.1:40000:40000
+    #   cmd:
+    #     --config /configs/containerlab-gosdn.toml
+    #   binds:
+    #     - ./configs/containerlab-gosdn.toml:/configs/containerlab-gosdn.toml
+
+
+    # # routing-engine:
+    # #   kind: linux
+    # #   image: registry.code.fbi.h-da.de/danet/arista-routing-engine:develop
+    # #   mgmt_ipv4: 172.100.0.10
+    # #   group: core
+
+    mongo:
+      kind: linux
+      image: mongo:5
+      mgmt_ipv4: 172.100.0.11
+      ports:
+        - 127.0.0.1:27017:27017
+      env:
+        MONGO_INITDB_ROOT_USERNAME: root
+        MONGO_INITDB_ROOT_PASSWORD: example
+
+    mongo-express:
+      kind: linux
+      image: mongo-express:0.54.0
+      mgmt_ipv4: 172.100.0.12
+      ports:
+          - 127.0.0.1:8081:8081
+      env:
+        ME_CONFIG_MONGODB_ADMINUSERNAME: root
+        ME_CONFIG_MONGODB_ADMINPASSWORD: example
+
+    rabbitmq:
+      kind: linux
+      image: rabbitmq:3-management
+      mgmt_ipv4: 172.100.0.13
+      ports:
+          - 127.0.0.1:5672:5672
+          - 127.0.0.1:15672:15672
+
+    # # hostname-checker:
+    # #   kind: linux
+    # #   image: registry.code.fbi.h-da.de/danet/hostname-checker:develop
+    # #   mgmt_ipv4: 172.100.0.14
+    # #   group: core
+
+
+  links:
+    - endpoints: ["ceos0:eth1","ceos1:eth1"]
+    - endpoints: ["ceos0:eth2","client-lab-1-1:eth1"]
+    - endpoints: ["ceos0:eth3","client-lab-1-2:eth1"]
+    - endpoints: ["ceos1:eth2","client-lab-2-1:eth1"]
+    - endpoints: ["ceos1:eth3","client-lab-2-2:eth1"]
+

@@ -1,0 +1,38 @@
+{
+    "openconfig-interfaces:config": {
+      "enabled": true,
+      "loopback-mode": false,
+      "mtu": 0,
+      "name": "Ethernet2",
+      "openconfig-vlan:tpid": "openconfig-vlan-types:TPID_0X8100",
+      "type": "iana-if-type:ethernetCsmacd"
+    },
+    "openconfig-interfaces:name": "Ethernet2",
+    "openconfig-interfaces:subinterfaces": {
+      "subinterface": [
+        {
+          "config": {
+            "enabled": true,
+            "index": 0
+          },
+          "index": 0,
+          "openconfig-if-ip:ipv4": {
+            "addresses": {
+              "address": [
+                {
+                  "config": {
+                    "ip": "192.168.100.1",
+                    "prefix-length": 24
+                  },
+                  "ip": "192.168.100.1"
+                }
+              ]
+            },
+            "config": {
+              "enabled": true
+            }
+          }
+        }
+      ]
+    }
+  }

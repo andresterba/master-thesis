@@ -1,0 +1,93 @@
+{
+	"info": {
+		"_postman_id": "507f696b-d084-4194-99de-6c6c6268dae1",
+		"name": "AS-Thesis-Evaluation",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Routing-Engine-Evaluation",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"timestamp\": \"1649929667405420000\",\n    \"link\": {\n        \"name\": \"test\",\n        \"sourceNode\": {\n            \"id\": \"03738853-a2b5-4f99-ab40-18311e665474\",\n            \"name\": \"ceos0\"\n        },\n        \"targetNode\": {\n            \"id\": \"16106543-12bb-49ef-b674-9b06b83aa158\",\n            \"name\": \"ceos1\"\n        },\n        \"sourcePort\": {\n            \"id\": \"1fa479e7-d393-4d45-822d-485cc1f05fce\",\n            \"name\": \"Ethernet1\",\n            \"configuration\": {\n                \"ip\": \"10.13.37.1\",\n                \"prefixLength\": \"30\"\n            }\n        },\n        \"targetPort\": {\n            \"id\": \"1fa479e7-d393-4d45-822d-485cc1f05fc2\",\n            \"name\": \"Ethernet1\",\n            \"configuration\": {\n                \"ip\": \"10.13.37.2\",\n                \"prefixLength\": \"30\"\n            }\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/topology/create",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"topology",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Routing-Engine-Evaluation-Table-0",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"timestamp\": \"1649929667405420000\",\n    \"routingTable\": {\n        \"id\": \"ffa89ed0-cef1-4219-bb19-3c751d5c5c9d\",\n        \"nodeID\": \"03738853-a2b5-4f99-ab40-18311e665474\",\n        \"routes\": [{\n            \"id\": \"ffa89ed0-cef1-4219-bb19-3c751d5c5c9d\",\n            \"targetIPRange\": \"192.168.100.0/24\",\n            \"nextHopIP\": \"10.13.37.2\",\n            \"portID\": \"1fa479e7-d393-4d45-822d-485cc1f05fc2\",\n            \"metric\": \"1\"\n        }]\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/routing/create",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"routing",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Routing-Engine-Evaluation-Table-1",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"timestamp\": \"1649929667405420000\",\n    \"routingTable\": {\n        \"id\": \"ffa89ed0-cef1-4219-bb19-3c751d5c5c92\",\n        \"nodeID\": \"16106543-12bb-49ef-b674-9b06b83aa158\",\n        \"routes\": [{\n            \"id\": \"ffa89ed0-cef1-4219-bb19-3c751d5c5c92\",\n            \"targetIPRange\": \"192.168.0.0/24\",\n            \"nextHopIP\": \"10.13.37.1\",\n            \"portID\": \"1fa479e7-d393-4d45-822d-485cc1f05fce\",\n            \"metric\": \"1\"\n        }]\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/routing/create",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"routing",
+						"create"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
