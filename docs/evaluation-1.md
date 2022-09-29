@@ -41,6 +41,7 @@
 
 1. Add the nodes via `gosdnc`.
    The needed password can be found in the logs of the controller.
+   The logs can be seen in the window that executed `make start-gosdn-with-device-watch`.
 
     ```sh
     ./scripts/add-device-0.sh <password-from-logs>
