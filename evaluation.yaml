@@ -43,27 +43,6 @@ topology:
       mgmt_ipv4: 172.100.0.7
       group: lab-2
 
-    # gosdn:
-    #   kind: linux
-    #   image: registry.code.fbi.h-da.de/danet/gosdn:develop
-    #   mgmt_ipv4: 172.100.0.8
-    #   group: core
-    #   ports:
-    #     - 127.0.0.1:55055:55055
-    #     - 127.0.0.1:8080:8080
-    #     - 127.0.0.1:40000:40000
-    #   cmd:
-    #     --config /configs/containerlab-gosdn.toml
-    #   binds:
-    #     - ./configs/containerlab-gosdn.toml:/configs/containerlab-gosdn.toml
-
-
-    # # routing-engine:
-    # #   kind: linux
-    # #   image: registry.code.fbi.h-da.de/danet/arista-routing-engine:develop
-    # #   mgmt_ipv4: 172.100.0.10
-    # #   group: core
-
     mongo:
       kind: linux
       image: mongo:5
@@ -73,6 +52,8 @@ topology:
       env:
         MONGO_INITDB_ROOT_USERNAME: root
         MONGO_INITDB_ROOT_PASSWORD: example
+      binds:
+       - ./volumes/mongo-db:/data/db
 
     mongo-express:
       kind: linux
@@ -91,12 +72,6 @@ topology:
       ports:
           - 127.0.0.1:5672:5672
           - 127.0.0.1:15672:15672
-
-    # # hostname-checker:
-    # #   kind: linux
-    # #   image: registry.code.fbi.h-da.de/danet/hostname-checker:develop
-    # #   mgmt_ipv4: 172.100.0.14
-    # #   group: core
 
 
   links:

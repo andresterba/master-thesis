@@ -1,9 +1,11 @@
 start:
 	docker build -t thesis-evaluation-clients .
+	mkdir ./volumes/mongo-db
 	sudo containerlab deploy --topo evaluation.yaml
 
 stop:
 	sudo containerlab destroy --topo evaluation.yaml --cleanup --all
+	sudo rm -rf ./volumes/mongo-db
 
 graph:
 	sudo containerlab graph --topo evaluation.yaml
@@ -36,17 +38,20 @@ adjust-hostname-router-0:
 check-hostname-router-0:
 	gnmic -a 172.100.0.2:6030 -u admin -p admin --insecure get --path system/config/hostname
 
-watch-routing-engine:
-	docker logs -f clab-thesis_evaluation-routing-engine
-
-watch-hostname-checker:
-	docker logs -f clab-thesis_evaluation-hostname-checker
+reset-router-0:
+	sudo containerlab deploy --topo evaluation.yaml --reconfigure
 
 shell-ceos0:
 	docker exec -it clab-thesis_evaluation-ceos0 bash
 
 shell-ceos1:
 	docker exec -it clab-thesis_evaluation-ceos1 bash
+
+cli-ceos0:
+	docker exec -it lab-thesis_evaluation-ceos0 Cli
+
+cli-ceos1:
+	docker exec -it lab-thesis_evaluation-ceos1 Cli
 
 shell-client-lab-1-1:
 	docker exec -it clab-thesis_evaluation-client-lab-1-1 bash

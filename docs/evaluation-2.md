@@ -39,7 +39,7 @@
 
 1. Start the `hostname-checker` application with `make start-hostname-checker`.
 
-1. Adjust the hostname of router 1 with `make adjust-hostname-router-0`
+1. Adjust the hostname of router 0 with `make adjust-hostname-router-0`
 
 1. The `hostname-checker` will output if it has to adjust the hostname or not:
 
@@ -74,3 +74,8 @@
     }
     ]
     ```
+1. Delete router 0 with `make reset-router-0`
+
+1. Wait ~1 minute for the device to start again.
+
+1. Execute `make check-hostname-router-0` and validate that the hostname is `router-0`.
